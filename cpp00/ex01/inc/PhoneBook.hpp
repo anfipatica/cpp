@@ -1,14 +1,12 @@
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
-class PhoneBook
-{
+class PhoneBook {
 	public:
 		PhoneBook(void);
 		~PhoneBook(void);
-		int		n;
-		void	func(char *s);
-		void	func(int s);
+
+	private:
 };
 
 #endif

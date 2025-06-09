@@ -42,6 +42,7 @@ fi
 echo -e "NAME = $name\n" > $file
 
 echo -e "INC_DIR = ./inc" >> $file
+echo -e "SRC_DIR = ./src" >> $file
 echo -e "OBJS_DIR = ./objs\n" >> $file
 
 echo -e "CPP = c++" >> $file
@@ -50,8 +51,8 @@ echo -e "CPPFLAGS += -std=c++98\n" >> $file
 
 echo -e "RM = rm -rf\n" >> $file
 
-echo -e "SRCS = `ls $path | grep .cpp | tr '\n' ' '`\n" >> $file
-echo -e 'OBJS = $(patsubst %.cpp, $(OBJS_DIR)/%.o, $(SRCS))\n' >> $file
+echo -e "SRCS = `ls $path/src | grep .cpp | tr '\n' ' '`\n" >> $file
+echo -e 'OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJS_DIR)/%.o, $(SRCS))\n' >> $file
 echo 'GREEN = \033[0;32m
 GRAY = \033[0;90m
 STD = \033[0m' >> $file
