@@ -1,9 +1,10 @@
 #ifndef PHONEBOOK_HPP
-# define PHONEBOOK
+# define PHONEBOOK_HPP
 
-# include <iostream>
-# include "Contact.hpp"
-# include "includes.hpp"
+#include "Contact.hpp"
+#include "common_defines.hpp"
+
+#include <iostream>
 
 class PhoneBook {
 	public:
@@ -22,7 +23,6 @@ class PhoneBook {
 		int		_create_contact(Contact &contact);
 		void	_format_contact_display(std::string field_name, std::string field_info) const;
 		int		_validate_phone(std::string phone) const;
-
 	};
 
 #endif

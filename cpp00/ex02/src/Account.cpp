@@ -15,8 +15,8 @@ Account::Account(int initial_deposit)
 	this->_amount = initial_deposit;
 
 	//static values, shared between all instances.
-	this->_totalAmount += initial_deposit;
-	this->_nbAccounts++;
+	_totalAmount += initial_deposit;
+	_nbAccounts++;
 
 	_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex;
@@ -128,7 +128,7 @@ void	Account::displayStatus( void ) const
 void	Account::_displayTimestamp(void)
 {
 	//time_t = long type holding the time since epoch
-	std::time_t time_since_epoch = std::time(nullptr);
+	std::time_t time_since_epoch = std::time(NULL);
 
 	//tm = struct that tranforms the time since epoch into
 	//legible data time information.

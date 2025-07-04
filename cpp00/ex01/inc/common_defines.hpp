@@ -1,9 +1,5 @@
-#ifndef INCLUDES_HPP
-# define INCLUDES_HPP
-
-# include <string>
-# include <iostream>
-
+#ifndef COMMON_DEFINES_HPP
+# define COMMON_DEFINES_HPP
 
 # define OK 0
 # define KO 1

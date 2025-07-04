@@ -1,7 +1,8 @@
 #include "PhoneBook.hpp"
 
-
-#include <iomanip>
+#include <iomanip> //setfill, setw
+#include <cstdlib> //atoi
+#include <sstream> //stringstream
 
 #define COLUMN_WIDTH 10
 #define INVALID_INDEX -1
@@ -22,11 +23,11 @@ int	PhoneBook::_validate_index_input(std::string index_input) const
 {
 	int	index_len = 0;
 
-	for (char c : index_input)
+	for (int i = 0; index_input[i]; i++)
 	{
-		if (c == ' ')
+		if (std::isspace(index_input[i]))
 			continue;
-		if ((c >= '1' && c <= '8'))
+		if (std::isdigit(index_input[i]))
 			index_len++;
 		else
 		{
@@ -34,7 +35,7 @@ int	PhoneBook::_validate_index_input(std::string index_input) const
 		}
 	}
 	if (index_len == 1)
-		return (std::stoi(index_input));
+		return (std::atoi(index_input.c_str()));
 	else
 		return (INVALID_INDEX);
 }
@@ -72,6 +73,7 @@ void	PhoneBook::_select_contact_menu(void) const
 
 void	PhoneBook::display_contacts(int contact_index) const
 {
+
 	if (contact_index == 0)
 	{
 		std::cout << RED << "\nNo contacts have been added yet :(\n" << STD << std::endl;
@@ -84,7 +86,9 @@ void	PhoneBook::display_contacts(int contact_index) const
 		if (this->_contacts[i].get_last_name() == "")
 			break;
 		std::cout << GREEN << "+----------+----------+----------+----------+"<< STD << std::endl;
-		format_field(std::to_string(i + 1));
+		std::stringstream ss;
+		ss << i + 1;
+		format_field(ss.str());
 		format_field(this->_contacts[i].get_first_name());
 		format_field(this->_contacts[i].get_last_name());
 		format_field(this->_contacts[i].get_nickname());

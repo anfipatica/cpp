@@ -6,7 +6,6 @@ Contact::Contact(void) {
 Contact::~Contact(void) {
 }
 
-
 void	Contact::set_first_name(std::string first_name) {
 	this->_first_name = first_name;
 }
