@@ -9,6 +9,7 @@ Sample::~Sample(void) {
 	std::cout << "Destructor called" << std::endl;
 }
 
-void	Sample::bar(void) const{
+int	Sample::bar(void) const{
 	std::cout << "bar has been called" << std::endl;
+	return (this->n1);
 }

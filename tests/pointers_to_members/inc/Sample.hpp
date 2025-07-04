@@ -4,12 +4,12 @@
 class Sample {
 	public:
 		int n1;
-		double n2;
+		int n2;
 		int n3;
 		char c;
 		Sample(void);
 		~Sample(void);
-		void bar(void) const;
+		int bar(void) const;
 	private:
 };
 

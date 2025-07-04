@@ -17,7 +17,6 @@ class Contact {
 		std::string	get_phone(void) const;
 		std::string	get_darkest_secret(void) const;
 
-
 	private:
 		std::string	_first_name;
 		std::string	_last_name;
