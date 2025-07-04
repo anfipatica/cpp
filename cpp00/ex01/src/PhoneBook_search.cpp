@@ -54,7 +54,7 @@ void	PhoneBook::_select_contact_menu(void) const
 	std::cout << BLUE << "\n\nSelect an index to see the contact information: " << STD;
 	std::getline(std::cin, index_input);
 	index = _validate_index_input(index_input);
-	if (index == INVALID_INDEX)
+	if (index == INVALID_INDEX || index < 1 || index > 8)
 	{
 		std::cout << RED << "\nThe index must be a a number between 1 - 8"  << STD << std::endl;
 		return ;

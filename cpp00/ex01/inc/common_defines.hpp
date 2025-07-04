@@ -5,6 +5,8 @@
 # define KO 1
 # define MAX_CONTACTS 8
 
+
+
 /*   COLORS   */
 
 #define STD "\033[0m"

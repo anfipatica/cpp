@@ -21,6 +21,7 @@ tree -L 2 -P *.cpp -P Makefile 2>/dev/null
 if [[ $? > 0 ]]; then
 	echo -e $GRAY"A directory tree could not be executed."
 	echo -e "Install *tree* if you want to see it"$STD
+	ls -l
 fi
 
 echo -e "\n\n"
@@ -42,8 +43,8 @@ fi
 echo -e "NAME = $name\n" > $file
 
 echo -e "INC_DIR = ./inc" >> $file
-echo -e "SRC_DIR = ./src" >> $file
-echo -e "OBJS_DIR = ./objs\n" >> $file
+echo -e "SRC_DIR = ./src/" >> $file
+echo -e "OBJS_DIR = ./objs/\n" >> $file
 
 echo -e "CPP = c++" >> $file
 echo -e 'CPPFLAGS =	-I$(INC_DIR) -Wextra -Wall -Werror' >> $file
@@ -51,8 +52,8 @@ echo -e "CPPFLAGS += -std=c++98\n" >> $file
 
 echo -e "RM = rm -rf\n" >> $file
 
-echo -e "SRCS = `ls $path/src | grep .cpp | tr '\n' ' '`\n" >> $file
-echo -e 'OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJS_DIR)/%.o, $(SRCS))\n' >> $file
+echo -e "SRCS = ` ls $path/src | grep .cpp | sed 's/^/$(SRC_DIR)/g'| tr '\n' ' '`\n" >> $file
+echo -e 'OBJS = $(patsubst $(SRC_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))\n' >> $file
 echo 'GREEN = \033[0;32m
 GRAY = \033[0;90m
 STD = \033[0m' >> $file
@@ -65,7 +66,7 @@ echo -e '$(NAME): $(OBJS)' >> $file
 echo -e '	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)' >> $file
 echo -e '	@echo "\\n$(GREEN)Compilation finished.$(STD)"\n' >> $file
 
-echo -e '$(OBJS_DIR)/%.o: %.cpp' >> $file
+echo -e '$(OBJS_DIR)%.o: $(SRC_DIR)%.cpp' >> $file
 echo -e '	@echo "$(GRAY)Compiling file  →   $< $(STD)"' >> $file
 echo -e '	@mkdir -p $(OBJS_DIR)' >> $file
 echo -e '	$(CPP) -c -MMD $(CPPFLAGS) -o $@ $<' >> $file

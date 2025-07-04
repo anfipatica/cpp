@@ -6,6 +6,7 @@ int	main(void)
 	std::string	input;
 	int	contact_index = 0;
 
+
 	while (true)
 	{
 		std::cout << BLUE << "PHONEBOOK > " << STD;

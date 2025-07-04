@@ -2,6 +2,7 @@
 #include <chrono>
 #include <thread>
 
+//ESTO NO ES VALIDO NO SIRVE DA NADA YOLANDA DEL FUTURO!!!
 int main() {
 	// Usando endl (flush automático)
 	std::cout << "Usando endl:" << std::endl;
