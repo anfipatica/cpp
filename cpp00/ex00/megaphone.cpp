@@ -10,7 +10,8 @@ int	main(int argc, char **argv)
 		{
 			for (int j = 0; argv[i][j]; j++)
 				std::cout << (char)std::toupper(argv[i][j]);
-			std::cout << " ";
+			if (i + 1 < argc)
+				std::cout << " ";
 		}
 	}
 	std::cout << std::endl;

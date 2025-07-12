@@ -48,6 +48,7 @@ echo -e "OBJS_DIR = ./objs/\n" >> $file
 
 echo -e "CPP = c++" >> $file
 echo -e 'CPPFLAGS =	-I$(INC_DIR) -Wextra -Wall -Werror' >> $file
+echo -e 'CPPFLAGS += -fsanitize=address' >> $file
 echo -e "CPPFLAGS += -std=c++98\n" >> $file
 
 echo -e "RM = rm -rf\n" >> $file
@@ -69,8 +70,7 @@ echo -e '	@echo "\\n$(GREEN)Compilation finished.$(STD)"\n' >> $file
 echo -e '$(OBJS_DIR)%.o: $(SRC_DIR)%.cpp' >> $file
 echo -e '	@echo "$(GRAY)Compiling file  →   $< $(STD)"' >> $file
 echo -e '	@mkdir -p $(OBJS_DIR)' >> $file
-echo -e '	$(CPP) -c -MMD $(CPPFLAGS) -o $@ $<' >> $file
-echo -e '-include $(OBJS_DIR)/*.d\n' >> $file
+echo -e '	$(CPP) -c -MMD $(CPPFLAGS) -o $@ $<\n' >> $file
 
 echo -e 'clean:' >> $file
 echo -e '	@$(RM) objs\n' >> $file
@@ -78,6 +78,7 @@ echo -e '	@$(RM) objs\n' >> $file
 echo -e 'fclean: clean' >> $file
 echo -e '	@rm $(NAME)\n' >> $file
 
-echo -e 're: fclean all' >> $file
+echo -e 're: fclean all\n' >> $file
 
+echo -e '-include $(OBJS_DIR)/*.d' >> $file
 #--------------------------------------------------------------------------

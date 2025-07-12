@@ -1,40 +1,37 @@
-NAME = phonebook
+NAME = brainz
 
 INC_DIR = ./inc
-OBJS_DIR = ./objs/
 SRC_DIR = ./src/
+OBJS_DIR = ./objs/
 
 CPP = c++
 CPPFLAGS =	-I$(INC_DIR) -Wextra -Wall -Werror
-CPPFLAGS = -fsanitize=address
 CPPFLAGS += -std=c++98
 
 RM = rm -rf
 
-SRC =   $(SRC_DIR)main.cpp\
-		$(SRC_DIR)Contact.cpp\
-		$(SRC_DIR)PhoneBook.cpp\
-		$(SRC_DIR)PhoneBook_search.cpp
+SRCS = $(SRC_DIR)main.cpp $(SRC_DIR)newZombie.cpp $(SRC_DIR)randomChump.cpp $(SRC_DIR)Zombie.cpp 
 
-OBJS = $(patsubst $(SRC_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRC))
+OBJS = $(patsubst $(SRC_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 
 GREEN = \033[0;32m
 GRAY = \033[0;90m
 STD = \033[0m
 
+-include $(OBJS_DIR)/*.d
+
 .PHONY: clean all fclean re
 
-all:$(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 	@echo "\n$(GREEN)Compilation finished.$(STD)"
 
 $(OBJS_DIR)%.o: $(SRC_DIR)%.cpp
 	@echo "$(GRAY)Compiling file  →   $< $(STD)"
 	@mkdir -p $(OBJS_DIR)
-	@$(CPP) -c -MMD $(CPPFLAGS) -o $@ $<
--include $(OBJS_DIR)/*.d
+	$(CPP) -c -MMD $(CPPFLAGS) -o $@ $<
 
 clean:
 	@$(RM) objs

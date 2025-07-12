@@ -1,10 +1,6 @@
 #include "Zombie.hpp"
-#include <iostream>
 
-Zombie::Zombie(std::string name): _name(name)
-{
-	//std::cout << "("<< this << ") " <<_name << " is ALIVE!!" << std::endl;
-}
+Zombie::Zombie() {}
 
 Zombie::~Zombie(void) {
 	std::cout << _name << " is... dead, this time for real" << std::endl;

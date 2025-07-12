@@ -5,11 +5,8 @@
 
 class Zombie {
 	public:
-		Zombie(void);
+		Zombie(std::string _name);
 		~Zombie(void);
-
-		Zombie*		newZombie(std::string name);
-		void		randomChump(std::string name);
 
 		void		set_name(std::string name);
 		std::string	get_name(void) const;
@@ -19,5 +16,8 @@ class Zombie {
 	private:
 		std::string	_name;
 };
+
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
 
 #endif
