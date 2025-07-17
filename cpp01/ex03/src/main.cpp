@@ -2,21 +2,21 @@
 #include "HumanB.hpp"
 #include <iostream>
 
-/* int	main(void)
-{
-	Weapon weapon = Weapon("crude spiked club");
+// int	main(void)
+// {
+// 	Weapon weapon = Weapon("crude spiked club");
 
-	HumanA federico = HumanA("Federico", weapon);
-	federico.attack();
-	weapon.setType("some other type of club");
-	federico.attack();
+// 	HumanA federico = HumanA("Federico", weapon);
+// 	federico.attack();
+// 	weapon.setType("some other type of club");
+// 	federico.attack();
 
-	HumanB anarosa = HumanB("Anarosa");
-	anarosa.attack();
-	anarosa.set_weapon(&weapon);
-	anarosa.attack();
-	return (0);
-} */
+// 	HumanB anarosa = HumanB("Anarosa");
+// 	anarosa.attack();
+// 	anarosa.setWeapon(weapon);
+// 	anarosa.attack();
+// 	return (0);
+// }
 
 int	main(void)
 {
@@ -35,4 +35,6 @@ int	main(void)
 		club.setType("some other type of club");
 		jim.attack();
 	}
+
+	return (0);
 }

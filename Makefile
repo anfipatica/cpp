@@ -17,6 +17,8 @@ GREEN = \033[0;32m
 GRAY = \033[0;90m
 STD = \033[0m
 
+-include $(OBJS_DIR)/*.d
+
 .PHONY: clean all fclean re
 
 all: $(NAME)
@@ -29,7 +31,7 @@ $(OBJS_DIR)/%.o: %.cpp
 	@echo "$(GRAY)Compiling file  →   $< $(STD)"
 	@mkdir -p $(OBJS_DIR)
 	@$(CPP) -c -MMD $(CPPFLAGS) -o $@ $<
--include $(OBJS_DIR)/*.d
+
 
 clean:
 	@$(RM) objs
