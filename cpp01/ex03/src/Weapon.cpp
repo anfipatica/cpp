@@ -3,6 +3,7 @@
 
 #define STD "\033[0m"
 #define GREY "\033[1;30m"
+
 Weapon::Weapon(std::string type): _type(type)
 {
 	std::cout << GREY << "W:  Weapon " << _type << " created (" << this << ")" << STD << std::endl;

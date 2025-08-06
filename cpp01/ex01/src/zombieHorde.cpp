@@ -10,7 +10,7 @@ Zombie	*zombieHorde(int N, std::string name)
 	
 	for (int i = 0; i < N; i++)
 	{
-		std::stringstream ss;
+		std::ostringstream ss;
 		ss << name << "_" << i;
 		zombie[i].set_name(ss.str());
 	}

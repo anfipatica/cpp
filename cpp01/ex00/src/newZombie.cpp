@@ -5,8 +5,8 @@
  * 
  * It will not be autocatically eliminated once this function ends
  * and since we are returning it as a pointer, we can use it in other functions as well.
- * @param name 
- * @return Zombie* 
+ * @param name the name the zombie will get.
+ * @return Zombie* A ponter to the zombie object.
  */
 Zombie*	newZombie(std::string name)
 {

@@ -4,7 +4,7 @@
 #define STD "\033[0m"
 #define GREY "\033[1;30m"
 
-HumanB::HumanB(std::string name): _name(name)
+HumanB::HumanB(std::string name): _name(name), _weapon(NULL)
 {
 	std::cout << GREY << "HB: " << _name << " (" << this <<
 		") was born without a weapon :(" << STD << std::endl;
@@ -26,7 +26,7 @@ void	HumanB::setWeapon(Weapon &weapon)
 void	HumanB::attack(void)
 {
 	if (_weapon == NULL)
-		std::cout << _name << "has no weapon to attack with :(" << std::endl;
+		std::cout << _name << " has no weapon to attack with :(" << std::endl;
 	else
 		std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
 }

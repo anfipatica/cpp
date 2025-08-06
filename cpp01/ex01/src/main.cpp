@@ -2,7 +2,7 @@
 
 int	main(void)
 {
-	int n = -99;
+	int n = 0;
 
 	Zombie *zombie_horde = zombieHorde(n, "Rigoberto");
 

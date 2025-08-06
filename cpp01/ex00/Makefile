@@ -6,6 +6,7 @@ OBJS_DIR = ./objs/
 
 CPP = c++
 CPPFLAGS =	-I$(INC_DIR) -Wextra -Wall -Werror
+CPPFLAGS += -fsanitize=address
 CPPFLAGS += -std=c++98
 
 RM = rm -rf
@@ -18,7 +19,6 @@ GREEN = \033[0;32m
 GRAY = \033[0;90m
 STD = \033[0m
 
--include $(OBJS_DIR)/*.d
 
 .PHONY: clean all fclean re
 
@@ -40,3 +40,5 @@ fclean: clean
 	@rm $(NAME)
 
 re: fclean all
+
+-include $(OBJS_DIR)/*.d
