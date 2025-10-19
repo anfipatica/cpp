@@ -1,7 +1,6 @@
 #ifndef INTEGER
 # define INTEGER
 
-# include <iostream>
 
 class Integer {
 	public:

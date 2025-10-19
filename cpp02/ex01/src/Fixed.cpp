@@ -3,10 +3,13 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-
+#include <cmath>
 #include <bitset>
 
 const int Fixed::_fractional_bits = 8;
+
+
+// --------------------- CONSTRUCTORS -----------------------------------------
 
 Fixed::Fixed(void): _value(0)
 {
@@ -15,48 +18,14 @@ Fixed::Fixed(void): _value(0)
 
 Fixed::Fixed(const int n): _value(n << _fractional_bits)
 {
-	std::bitset<16> n_bits(n);
-	std::bitset<16> value_bits(_value);
-
-	std::cout << sizeof(int) << std::endl;
-	std::cout << "n = " << n << " | " << n_bits << "\n";
-	std::cout << "v = " << _value << " | " << value_bits << "\n";
-
-	std::cout << "Int constructor called - " << (n << _fractional_bits) << std::endl;
+	std::cout << "INT constructor called." << std::endl;
 }
 
 
-Fixed::Fixed(float n)
+Fixed::Fixed(const float n): _value(roundf(n * (1 << _fractional_bits)))
 {
-	std::cout << "Float constructor called" << std::endl;
-
-	std::bitset<16> n_bits(n);
-	std::cout << sizeof(float) << std::endl;
-	std::cout << "n = " << n << " | " << n_bits << "\n";
+	std::cout << "FLOAT constructor called." << std::endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// Fixed:: Fixed(const int int_nb) : fixed(int_nb << bits)
-// {
-//     std::cout << "INT constructor called." << std::endl;
-// }
-
-// Fixed:: Fixed(const float float_nb)
-// {
-//     std::cout << "FLOAT constructor called." << std::endl;
-//     fixed = roundf((float)float_nb * (1 << bits));
-// }
-
 
 
 Fixed::Fixed(const Fixed &fixed)
@@ -65,18 +34,24 @@ Fixed::Fixed(const Fixed &fixed)
 	*this = fixed;
 }
 
+// --------------------- OPERATOR OVERLOADS -----------------------------------
+
 Fixed &Fixed::operator=(const Fixed &fixed)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &fixed)
-		this->_value = fixed.getRawBits();
+		this->_value = fixed._value;
 	return (*this);
 }
 
-Fixed::~Fixed(void)
+std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
 {
-	std::cout << "Destructor called" << std::endl;
+	os << fixed.toFloat();
+	return (os);
 }
+
+
+// --------------------- MEMBER FUNCTIONS -------------------------------------
 
 int	Fixed::getRawBits(void) const
 {
@@ -88,4 +63,23 @@ void	Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
 	_value = raw;
+}
+
+int		Fixed::toInt(void) const
+{
+	return (_value >> _fractional_bits);
+}
+
+float	Fixed::toFloat(void) const
+{
+	return ((float)_value / (1 << _fractional_bits));
+}
+
+
+
+// --------------------- DESTRUCTORS ------------------------------------------
+
+Fixed::~Fixed(void)
+{
+	std::cout << "Destructor called" << std::endl;
 }

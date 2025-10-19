@@ -1,0 +1,43 @@
+NAME = diamond
+INC_DIR = ./inc
+SRC_DIR = ./src/
+OBJS_DIR = ./objs/
+
+CPP = c++
+CPPFLAGS =	-I$(INC_DIR) -Wextra -Wall -Werror -Wno-shadow
+CPPFLAGS += -fsanitize=address
+CPPFLAGS += -std=c++98
+
+RM = rm -rf
+
+SRCS = $(SRC_DIR)ClapTrap.cpp $(SRC_DIR)ScavTrap.cpp $(SRC_DIR)DiamondTrap.cpp \
+		$(SRC_DIR)FragTrap.cpp $(SRC_DIR)main.cpp 
+
+OBJS = $(patsubst $(SRC_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
+
+GREEN = \033[0;32m
+GRAY = \033[0;90m
+STD = \033[0m
+
+.PHONY: clean all fclean re
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	@echo "\n$(GREEN)Compilation finished.$(STD)"
+
+$(OBJS_DIR)%.o: $(SRC_DIR)%.cpp
+	@echo "$(GRAY)Compiling file  →   $< $(STD)"
+	@mkdir -p $(OBJS_DIR)
+	$(CPP) -c -MMD $(CPPFLAGS) -o $@ $<
+
+clean:
+	@$(RM) objs
+
+fclean: clean
+	@rm $(NAME)
+
+re: fclean all
+
+-include $(OBJS_DIR)/*.d
