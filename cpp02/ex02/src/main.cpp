@@ -1,22 +1,7 @@
 #include <iostream>
 #include "../inc/Fixed.hpp"
-/* 
-int main( void ) {
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
-	Fixed d(10.2f);
-	// Fixed e(1234.4321f);
-	// Fixed f(42.42f);
-	c = b;
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	std::cout << d.getRawBits() << std::endl;
-	return 0;
-} */
 
-void	test_post_pre_increment_decrement(void)
+/* void	test_post_pre_increment_decrement(void)
 {
 	Fixed n;
 	std::cout << "n: " << (n) << "\n";
@@ -31,19 +16,19 @@ void	test_min_max(void)
 {
 	Fixed n1 = Fixed(5);
 	Fixed n2 = Fixed(4.9f);
-	std::cout << "n1: " << &n1 << "\n";
-	std::cout << "n2: " << &n2 << "\n";
-	std::cout << "normal min: " << &(Fixed::min(n1, n2)) << "\n";
-	
+	std::cout << "n1: " << n1 << "\n";
+	std::cout << "n2: " << n2 << "\n";
+	std::cout << "min: " << Fixed::min(n1, n2) << "\n";
+	std::cout << "max: " << Fixed::max(n1, n2) << "\n";
+
 	const Fixed n3 = Fixed(5);
 	const Fixed n4 = Fixed(4.9f);
-	std::cout << "n3: " << &n3 << "\n";
-	std::cout << "n4: " << &n4 << "\n";
-	std::cout << "const min: " << &(Fixed::min(n3, n4)) << "\n";
+	std::cout << "n3: " << n3 << "\n";
+	std::cout << "n4: " << n4 << "\n";
+	std::cout << "const min: " << Fixed::min(n3, n4) << "\n";
+	std::cout << "const max: " << Fixed::max(n3, n4) << "\n";
 
-	std::cout << "mixed min: " << &(Fixed::min(n1, n4)) << std::endl;
-
-
+	std::cout << "mixed min: " << Fixed::min(n1, n4) << std::endl;
 }
 
 void	test_constructors(void)
@@ -73,10 +58,11 @@ void	test_constructors(void)
 
 void	test_comparison_operators(Fixed n1, Fixed n2, Fixed n3)
 {
-	std::cout << "n1(" << n1 << ") > n2(" << n2 << "):  " << (n1 < n2) << "\n";
-	std::cout << "n1(" << n1 << ") < n2(" << n2 << "):  " << (n1 > n2) << "\n";
-	std::cout << "n1(" << n1 << ") >= n2(" << n2 << "): " << (n1 <= n2) << "\n";
-	std::cout << "n1(" << n1 << ") <= n2(" << n2 << "): " << (n1 >= n2) << "\n";
+	std::cout << "true: " << true << ". false: " << false << "\n";
+	std::cout << "n1(" << n1 << ") > n2(" << n2 << "):  " << (n1 > n2) << "\n";
+	std::cout << "n1(" << n1 << ") < n2(" << n2 << "):  " << (n1 < n2) << "\n";
+	std::cout << "n1(" << n1 << ") >= n2(" << n2 << "): " << (n1 >= n2) << "\n";
+	std::cout << "n1(" << n1 << ") <= n2(" << n2 << "): " << (n1 <= n2) << "\n";
 	std::cout << "n1(" << n1 << ") == n2(" << n2 << "): " << (n1 == n2) << "\n";
 	std::cout << "n1(" << n1 << ") != n2(" << n2 << "): " << (n1 != n2) << "\n";
 
@@ -90,13 +76,13 @@ void	test_arithmetic_operators(Fixed n1, Fixed n2, Fixed n3)
 	std::cout << "n1 = " << n1 << "\n";
 	std::cout << "n2 = " << n2 << "\n";
 	std::cout << "n3 = " << n3 << "\n";
-	std::cout	<< "Operaciones básicas:\n";
+	std::cout	<< "Basic operations:\n";
 	std::cout	<< "n1 + n2 = " << n1 + n2 << "\n";
 	std::cout	<< "n1 - n2 = " << (n1 - n2) << "\n";
 	std::cout	<< "n1 * n2 = " << (n1 * n2) << "\n";
 	std::cout	<< "n1 / n2 = " << (n1 / n2) << "\n";
 
-	std::cout << "Concatenación de operaciones:\n";
+	std::cout << "More complex operations:\n";
 	std::cout	<< "n1 + n1 + n1 + n1 + n1 = " << (n1 + n1 + n1 + n1 + n1) << "\n";
 	std::cout	<< "n2 + n2 + n2 + n2 + n2 = " << (n2 + n2 + n2 + n2 + n2) << "\n";
 	std::cout	<< "n3 - n3 - n3 - n3 - n1 = " << (n3 - n3 - n3 - n3 - n1) << "\n";
@@ -110,11 +96,27 @@ void	test_arithmetic_operators(Fixed n1, Fixed n2, Fixed n3)
 
 int main( void )
 {
-	//test_constructors();
-	//test_comparison_operators(1, 2, 1.0f);
-	test_arithmetic_operators(1, 0.5f, 1.0f);
-	//test_post_pre_increment_decrement();
-	//test_min_max();
+	Fixed	f(8388608.0f);
 
+	std::cout << f << "\n";
+	test_constructors();
+	test_comparison_operators(1, 2, 1.0f);
+	test_arithmetic_operators(1, 0.5f, 1.0f);
+	test_post_pre_increment_decrement();
+	test_min_max();
+	return 0;
+} */
+
+int main( void ) {
+	Fixed a;
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
 	return 0;
 }

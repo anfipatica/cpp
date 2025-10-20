@@ -8,7 +8,6 @@
 
 const int Fixed::_fractional_bits = 8;
 
-
 // --------------------- CONSTRUCTORS -----------------------------------------
 
 Fixed::Fixed(void): _value(0)
@@ -50,7 +49,6 @@ std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
 	return (os);
 }
 
-
 // --------------------- MEMBER FUNCTIONS -------------------------------------
 
 int	Fixed::getRawBits(void) const
@@ -74,8 +72,6 @@ float	Fixed::toFloat(void) const
 {
 	return ((float)_value / (1 << _fractional_bits));
 }
-
-
 
 // --------------------- DESTRUCTORS ------------------------------------------
 

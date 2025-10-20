@@ -204,14 +204,26 @@ Fixed &Fixed::min(Fixed &n1, Fixed &n2)
 
 Fixed &Fixed::min(const Fixed &n1, const Fixed &n2)
 {
-	// Fixed &n1_copy = (Fixed &)n1;
-
-	std::cout << "(const min function called) ";
+	std::cout << "(const min function called)\n";
 	if (n1._value < n2._value)
 		return ((Fixed &)n1);
 	return ((Fixed &)n2);
 }
 
+Fixed &Fixed::max(Fixed &n1, Fixed &n2)
+{
+	if (n1._value > n2._value)
+		return (n1);
+	return (n2);
+}
+
+Fixed &Fixed::max(const Fixed &n1, const Fixed &n2)
+{
+	std::cout << "(const max function called)\n";
+	if (n1._value > n2._value)
+		return ((Fixed &)n1);
+	return ((Fixed &)n2);
+}
 
 
 // --------------------- DESTRUCTORS ------------------------------------------

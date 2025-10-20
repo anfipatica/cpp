@@ -2,7 +2,7 @@
 #include "Fixed.hpp"
 
 
-void	test_constructors(void)
+/* void	test_constructors(void)
 {
 	Fixed a; // Default constructor.
 	std::cout << "\n";
@@ -26,9 +26,9 @@ int main( void )
 {
 	test_constructors();
 	return 0;
-}
+} */
 
-/* int main( void ) {
+int main( void ) {
 	Fixed a;
 	Fixed b( a );
 	Fixed c;
@@ -39,4 +39,4 @@ int main( void )
 	std::cout << b.getRawBits() << std::endl;
 	std::cout << c.getRawBits() << std::endl;
 	return 0;
-} */
+}
