@@ -13,10 +13,10 @@ public:
 	DiamondTrap &operator=(const DiamondTrap &clap);
 	~DiamondTrap(void);
 
-	using FragTrap::attack;
-	void			who_am_i(void) const;
+	using	FragTrap::attack;
+	void		who_am_i(void) const;
 private:
-	std::string		_name;
+	std::string	_name;
 };
 
 #endif

@@ -39,7 +39,7 @@ void	FragTrap::high_fives_guys(void)
 	if (_hit_points <= 0)
 		std::cout << "FragTrap " << _name << " is a bit too dead for high fives :(\n";
 	else if (_energy_points == 0)
-		std::cout << "FragTrap " << _name << " has no energy to rise its hand!\n";
+		std::cout << "FragTrap " << _name << " has no energy left to rise its hand!\n";
 	else
 	{
 		std::cout << "[ HIGH FIVES GUYS ]\n";

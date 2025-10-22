@@ -32,5 +32,9 @@ int	main(void)
 	std::cout << "\n:: cooler_sarl guards, as it's the only thing left to do\n";
 	cooler_sarl.guard_gate();
 
+	std::cout << "\n:: Creating a claptrap copy of cooler_sarl\n";
+	ClapTrap copy(cooler_sarl);
+	copy.info();
+
 	std::cout << std::endl;
 }

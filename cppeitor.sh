@@ -76,7 +76,7 @@ function ft_create_class() {
 		ft_create_class
 	;;
 	[nN])
-		echo -e $GREEN"\nThank you for using CPPEITOR.SH :)"$STD
+		echo -e $GREEN"\nThank you for using CXXEITOR.SH :)"$STD
 	;;
 	*)
 		echo -e $RED"\nPlease insert a valid option"$STD

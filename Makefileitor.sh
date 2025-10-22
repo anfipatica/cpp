@@ -46,10 +46,10 @@ echo -e "INC_DIR = ./inc" >> $file
 echo -e "SRC_DIR = ./src/" >> $file
 echo -e "OBJS_DIR = ./objs/\n" >> $file
 
-echo -e "CPP = c++" >> $file
-echo -e 'CPPFLAGS =	-I$(INC_DIR) -Wextra -Wall -Werror' >> $file
-echo -e 'CPPFLAGS += -fsanitize=address' >> $file
-echo -e "CPPFLAGS += -std=c++98\n" >> $file
+echo -e "CXX = c++" >> $file
+echo -e 'CXXFLAGS =	-I$(INC_DIR) -Wextra -Wall -Werror' >> $file
+echo -e 'CXXFLAGS += -fsanitize=address' >> $file
+echo -e "CXXFLAGS += -std=c++98\n" >> $file
 
 echo -e "RM = rm -rf\n" >> $file
 
@@ -64,13 +64,13 @@ echo -e "\n.PHONY: clean all fclean re\n" >> $file
 echo -e 'all: $(NAME)\n' >> $file
 
 echo -e '$(NAME): $(OBJS)' >> $file
-echo -e '	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)' >> $file
+echo -e '	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)' >> $file
 echo -e '	@echo "\\n$(GREEN)Compilation finished.$(STD)"\n' >> $file
 
 echo -e '$(OBJS_DIR)%.o: $(SRC_DIR)%.cpp' >> $file
 echo -e '	@echo "$(GRAY)Compiling file  →   $< $(STD)"' >> $file
 echo -e '	@mkdir -p $(OBJS_DIR)' >> $file
-echo -e '	$(CPP) -c -MMD $(CPPFLAGS) -o $@ $<\n' >> $file
+echo -e '	$(CXX) -c -MMD $(CXXFLAGS) -o $@ $<\n' >> $file
 
 echo -e 'clean:' >> $file
 echo -e '	@$(RM) objs\n' >> $file
