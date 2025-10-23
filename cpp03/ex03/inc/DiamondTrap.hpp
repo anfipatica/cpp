@@ -13,7 +13,7 @@ public:
 	DiamondTrap &operator=(const DiamondTrap &clap);
 	~DiamondTrap(void);
 
-	using	FragTrap::attack;
+	using	ScavTrap::attack;
 	void		who_am_i(void) const;
 private:
 	std::string	_name;

@@ -17,7 +17,7 @@ DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_name"), FragT
 	std::cout << "(DIAM) Constructor called for DiamondTrap " << _name << "\n";
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &diamond): ClapTrap(diamond), FragTrap(), ScavTrap()
+DiamondTrap::DiamondTrap(const DiamondTrap &diamond): ClapTrap(diamond), FragTrap(diamond), ScavTrap(diamond)
 {
 	std::cout << "(DIAM) copy Constructor called for " << _name << "\n";
 }

@@ -4,8 +4,8 @@
 FragTrap::FragTrap(void): ClapTrap("default_fragtrap")
 {
 	_hit_points = 100;
-	_energy_points = 50;
-	_attack_damage = 20;
+	_energy_points = 100;
+	_attack_damage = 30;
 	std::cout << "(FRAG) default Constructor called for " << _name << "\n";
 }
 
