@@ -3,6 +3,7 @@
 
 # include <string>
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Cat: public Animal
 {
@@ -12,6 +13,13 @@ public:
 	Cat &operator=(const Cat &cat);
 	~Cat(void);
 	void make_sound(void) const; //override
+
+	std::string	remember(const unsigned int index) const;
+	void	learn(const std::string idea, const unsigned int index);
+	void	thinking_thoughtful_thoughts(void) const;
+
+private:
+	Brain	*_brain;
 };
 
 #endif

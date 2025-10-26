@@ -4,6 +4,10 @@
 DiamondTrap::DiamondTrap(void): ClapTrap("default_clap_name"), FragTrap(), ScavTrap()
 {
 	_name = "default";
+	_hit_points = FragTrap::_base_hit_points;
+	_energy_points = ScavTrap::_base_energy_points;
+	_attack_damage = FragTrap::_base_attack_damage;
+
 	std::cout << "(DIAM) default Constructor called for " << _name << "\n";
 }
 

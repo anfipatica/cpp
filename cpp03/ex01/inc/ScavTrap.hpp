@@ -3,7 +3,7 @@
 
 # include "./ClapTrap.hpp"
 
-class ScavTrap: public ClapTrap {
+class ScavTrap: private ClapTrap {
 public:
 	ScavTrap(void);
 	ScavTrap(std::string name);

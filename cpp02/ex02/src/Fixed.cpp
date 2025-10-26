@@ -127,9 +127,7 @@ Fixed	Fixed::operator+(const Fixed &right_operand) const
 	Fixed	fixed;
 
 	fixed.setRawBits(left_operand->getRawBits() + right_operand.getRawBits());
-	return (fixed);
-	//return (left_operand->toFloat() + right_operand.toFloat());
-
+	return (fixed);L
 }
 
 Fixed	Fixed::operator-(const Fixed &right_operand) const
