@@ -11,6 +11,8 @@ public:
 	ItemList &operator=(const ItemList &item_list);
 	~ItemList(void);
 
+	ItemList	*get_next(void) const;
+	AMateria	*get_item(void) const;
 	void	insert_element(AMateria *item_dir);
 	static bool	is_empty;
 	void	print_list(void);

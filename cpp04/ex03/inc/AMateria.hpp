@@ -12,8 +12,13 @@ public:
 	const std::string	&get_type(void) const;
 	virtual	AMateria	*clone(void) const = 0;
 	virtual	void		use(ICharacter &target) = 0; //!en el subject no tiene el = 0
+
+	void				set_equipable(bool state);
+	bool				get_equipable(void) const;
+
 protected:
 	const std::string	_type;
+	bool				_equipable;
 private:
 	AMateria(void);
 	AMateria(const AMateria &amateria);

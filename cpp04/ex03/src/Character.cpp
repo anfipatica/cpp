@@ -1,7 +1,9 @@
 #include "Character.hpp"
 #include <iostream>
 
-ItemList	Character::_all_items;
+#include <cstdlib>
+
+ItemList	*Character::_all_items = NULL;
 
 Character::Character(void): _name("no_name")
 {
@@ -28,25 +30,32 @@ Character	&Character::operator=(const Character &character)
 
 Character::~Character(void)
 {
+	ItemList	*aux = _all_items;
 
+	while (_all_items)
+	{
+		aux = _all_items->get_next();
+		delete(_all_items);
+		_all_items = aux;
+	}
 }
 
 void Character::equip(AMateria *m)
 {
+	if (m->get_equipable() == false)
+	{
+		std::cout << _name << ": this object (" << m << ")is already in use\n";
+		return ;
+	}
 	for (int i = 0; i < N_ITEMS; ++i)
 	{
-		if (_items[i] == m)
-		{
-			std::cout << _name << ": this object (" << m << ")is already in the inventory\n";
-			return ;
-		}
-		else if (_items[i] == NULL)
+		if (_items[i] == NULL)
 		{
 			_items[i] = m;
-			if (_all_items.is_empty == true)
-				_all_items = ItemList(*m);
-			_all_items.insert_element(m);
-			_all_items.print_list();
+			_items[i]->set_equipable(false);
+			if (_all_items == NULL)
+				_all_items = new ItemList(*m);
+			_all_items->insert_element(m);
 			std::cout << _name << ": succesfully equiped " << m->get_type() << " (" << m << ").\n";
 			return ;
 		}
@@ -59,7 +68,10 @@ void	Character::unequip(int idx)
 	if (idx >= N_ITEMS || _items[idx] == NULL)
 		std::cout << _name << ": Invalid index. There is no item in slot" << idx << ".\n";
 	else
+	{
 		_items[idx] = NULL;
+		_items[idx]->set_equipable(true);
+	}
 }
 
 void	Character::use(int idx, ICharacter &target)
@@ -69,7 +81,6 @@ void	Character::use(int idx, ICharacter &target)
 	else
 	{
 		_items[idx]->use(target);
-		_items[idx] = NULL;
 	}
 }
 

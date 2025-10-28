@@ -26,7 +26,7 @@ public:
 private:
 	const std::string		_name;
 	AMateria		*_items[4];
-	static ItemList	_all_items;
+	static ItemList	*_all_items;
 };
 
 #endif

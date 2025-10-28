@@ -14,7 +14,6 @@ public:
 	void	use(ICharacter &target); //override
 private:
 	~Ice(void);
-
 };
 
 #endif

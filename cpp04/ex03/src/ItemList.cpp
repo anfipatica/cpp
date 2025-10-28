@@ -19,36 +19,43 @@ ItemList &ItemList::operator=(const ItemList &item_list)
 
 ItemList::~ItemList(void)
 {
-
+	delete(this->_item);
 }
 
 void	ItemList::insert_element(AMateria *item_dir)
 {
-	ItemList new_node(*item_dir);
 	if (_head == NULL)
 	{
 		_head = this;
 		_tail = this;
-		is_empty = false;
 	}
 	else
 	{
-		std::cout << "yuhu\n";
-		_tail->_next = &new_node;
-		_tail = &new_node;
+		ItemList *new_node = new ItemList(*item_dir);
+		_tail->_next = new_node;
+		_tail = new_node;
 	}
-	std::cout << "eo\n";
 }
 
 void	ItemList::print_list(void)
 {
 	ItemList	*aux = _head;
 	std::cout << "------------------------------------------\n";
+
 	while (aux)
 	{
-		std::cout << aux->_item << "\n";
+		std::cout <<  aux << " - " << aux->_item << "\n";
 		aux = aux->_next;
 	}
 	std::cout << "------------------------------------------\n";
+}
 
+ItemList	*ItemList::get_next(void) const
+{
+	return (_next);
+}
+
+AMateria	*ItemList::get_item(void) const
+{
+	return (_item);
 }
