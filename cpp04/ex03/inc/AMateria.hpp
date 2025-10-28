@@ -2,7 +2,11 @@
 # define AMATERIA_HPP
 
 # include <string>
-# include "ICharacter.hpp"
+// # include "ICharacter.hpp"
+# include "ItemList.hpp"
+
+class ICharacter;
+
 class	AMateria
 {
 public:
@@ -19,6 +23,8 @@ public:
 protected:
 	const std::string	_type;
 	bool				_equipable;
+	static ItemList		*_all_items;
+
 private:
 	AMateria(void);
 	AMateria(const AMateria &amateria);

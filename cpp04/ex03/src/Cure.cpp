@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-Cure::Cure(void): AMateria("cure") {
-}
+
+Cure::Cure(void): AMateria("cure") {}
 
 Cure::Cure(const Cure &cure): AMateria("cure") {(void)cure;}
 

@@ -3,8 +3,6 @@
 
 #include <cstdlib>
 
-ItemList	*Character::_all_items = NULL;
-
 Character::Character(void): _name("no_name")
 {
 	for (int i = 0; i < N_ITEMS; ++i)
@@ -29,16 +27,7 @@ Character	&Character::operator=(const Character &character)
 }
 
 Character::~Character(void)
-{
-	ItemList	*aux = _all_items;
-
-	while (_all_items)
-	{
-		aux = _all_items->get_next();
-		delete(_all_items);
-		_all_items = aux;
-	}
-}
+{ }
 
 void Character::equip(AMateria *m)
 {
@@ -52,10 +41,6 @@ void Character::equip(AMateria *m)
 		if (_items[i] == NULL)
 		{
 			_items[i] = m;
-			_items[i]->set_equipable(false);
-			if (_all_items == NULL)
-				_all_items = new ItemList(*m);
-			_all_items->insert_element(m);
 			std::cout << _name << ": succesfully equiped " << m->get_type() << " (" << m << ").\n";
 			return ;
 		}
@@ -69,8 +54,9 @@ void	Character::unequip(int idx)
 		std::cout << _name << ": Invalid index. There is no item in slot" << idx << ".\n";
 	else
 	{
-		_items[idx] = NULL;
+		_items[idx];
 		_items[idx]->set_equipable(true);
+		_items[idx] = NULL;
 	}
 }
 

@@ -4,7 +4,6 @@
 
 ItemList *ItemList::_head = NULL;
 ItemList *ItemList::_tail = NULL;
-bool	ItemList::is_empty = true;
 
 ItemList::ItemList(void): _item(NULL), _next(NULL)
 {}

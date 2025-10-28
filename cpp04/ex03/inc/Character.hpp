@@ -2,8 +2,7 @@
 # define CHARACTER_HPP
 
 # include <string>
-
-# include "ItemList.hpp"
+# include "ICharacter.hpp"
 
 # define N_ITEMS 4
 
@@ -26,7 +25,6 @@ public:
 private:
 	const std::string		_name;
 	AMateria		*_items[4];
-	static ItemList	*_all_items;
 };
 
 #endif

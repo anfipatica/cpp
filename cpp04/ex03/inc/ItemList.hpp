@@ -1,7 +1,7 @@
 #ifndef ITEMLIST_HPP
 # define ITEMLIST_HPP
 
-# include "AMateria.hpp"
+class AMateria;
 
 class ItemList
 {
@@ -14,7 +14,6 @@ public:
 	ItemList	*get_next(void) const;
 	AMateria	*get_item(void) const;
 	void	insert_element(AMateria *item_dir);
-	static bool	is_empty;
 	void	print_list(void);
 
 
