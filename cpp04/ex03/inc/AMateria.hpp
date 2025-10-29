@@ -3,19 +3,22 @@
 
 # include <string>
 // # include "ICharacter.hpp"
-# include "ItemList.hpp"
+//# include "ItemList.hpp"
 
-class ICharacter;
+class	ICharacter;
+class	ItemList;
 
 class	AMateria
 {
 public:
 	AMateria(const std::string &type);
+	AMateria &operator=(const AMateria &amateria);
 	virtual ~AMateria(void);
 	
 	const std::string	&get_type(void) const;
 	virtual	AMateria	*clone(void) const = 0;
 	virtual	void		use(ICharacter &target) = 0; //!en el subject no tiene el = 0
+	static void				clean_items_list(void);
 
 	void				set_equipable(bool state);
 	bool				get_equipable(void) const;
@@ -28,7 +31,6 @@ protected:
 private:
 	AMateria(void);
 	AMateria(const AMateria &amateria);
-	AMateria &operator=(const AMateria &amateria);
 };
 
 #endif

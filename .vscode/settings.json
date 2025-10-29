@@ -72,5 +72,11 @@
 		"typeindex": "cpp",
 		"valarray": "cpp",
 		"ios": "cpp"
-	}
+	},
+	"editor.rulers": [
+		{
+			"column": 80,
+			"color": "#5577ff44"
+		}
+	]
 }

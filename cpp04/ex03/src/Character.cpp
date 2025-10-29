@@ -1,4 +1,6 @@
 #include "Character.hpp"
+#include "AMateria.hpp"
+
 #include <iostream>
 
 #include <cstdlib>
@@ -27,21 +29,25 @@ Character	&Character::operator=(const Character &character)
 }
 
 Character::~Character(void)
-{ }
+{
+	AMateria::clean_items_list();
+}
 
 void Character::equip(AMateria *m)
 {
 	if (m->get_equipable() == false)
 	{
-		std::cout << _name << ": this object (" << m << ")is already in use\n";
+		std::cout << _name << ": this object (" << m << ") is already in use\n";
 		return ;
 	}
 	for (int i = 0; i < N_ITEMS; ++i)
 	{
 		if (_items[i] == NULL)
 		{
+			m->set_equipable(false);
 			_items[i] = m;
-			std::cout << _name << ": succesfully equiped " << m->get_type() << " (" << m << ").\n";
+			std::cout << _name << ": succesfully equiped " << m->get_type()
+				<< " (" << m << ").\n";
 			return ;
 		}
 	}
@@ -54,7 +60,8 @@ void	Character::unequip(int idx)
 		std::cout << _name << ": Invalid index. There is no item in slot" << idx << ".\n";
 	else
 	{
-		_items[idx];
+		std::cout << _name << ": succesfully unequiped " << _items[idx]->get_type()
+			<< " (" << _items[idx] << ").\n";
 		_items[idx]->set_equipable(true);
 		_items[idx] = NULL;
 	}
@@ -63,11 +70,9 @@ void	Character::unequip(int idx)
 void	Character::use(int idx, ICharacter &target)
 {
 	if (idx >= N_ITEMS || _items[idx] == NULL)
-		std::cout << _name << ": Invalid index. There is no item in slot" << idx << ".\n";
+		std::cout << _name << ": Invalid index. There is no item in slot " << idx << ".\n";
 	else
-	{
 		_items[idx]->use(target);
-	}
 }
 
 const std::string	&Character::get_name(void) const

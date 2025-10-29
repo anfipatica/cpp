@@ -1,6 +1,9 @@
 #include "AMateria.hpp"
+#include "ItemList.hpp"
 
 #include <iostream>
+
+ItemList		*AMateria::_all_items = NULL;
 
 AMateria::AMateria(void) {}
 
@@ -8,7 +11,7 @@ AMateria::AMateria(const AMateria &amateria) {(void)amateria;}
 
 AMateria &AMateria::operator=(const AMateria &amateria) {(void)amateria; return (*this);}
 
-AMateria::~AMateria(void)
+void	AMateria::clean_items_list(void)
 {
 	ItemList	*aux = _all_items;
 
@@ -19,6 +22,8 @@ AMateria::~AMateria(void)
 		_all_items = aux;
 	}
 }
+AMateria::~AMateria(void)
+{ }
 
 AMateria::AMateria(const std::string &type): _type(type), _equipable(true)
 {

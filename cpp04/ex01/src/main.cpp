@@ -1,5 +1,5 @@
-#include "Dog.hpp"
-#include "Cat.hpp"
+#include "../inc/Dog.hpp"
+#include "../inc/Cat.hpp"
 #include "WrongCat.hpp"
 #include <iostream>
 
@@ -41,6 +41,7 @@ void	more_copy_test(void)
 	dog3.learn("I am", 3);
 	dog3.learn("a", 4);
 	dog3.learn("dog", 4);
+	dog3.learn("Hola yago", 0);
 	dog1.thinking_thoughtful_thoughts();
 	dog2.thinking_thoughtful_thoughts();
 	dog3.thinking_thoughtful_thoughts();
@@ -70,8 +71,8 @@ void	subject_test(void)
 
 int main(void)
 {
-	//check_deep_copy();
+	check_deep_copy();
 	// subject_test();
-	more_copy_test();
+	//more_copy_test();
 	return (0);
 }

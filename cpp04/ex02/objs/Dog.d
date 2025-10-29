@@ -1,2 +1,2 @@
-objs/Dog.o: src/Dog.cpp src/../inc/Dog.hpp src/../inc/../inc/AAnimal.hpp \
- src/../inc/Brain.hpp
+objs/Dog.o: src/Dog.cpp src/../inc/Dog.hpp inc/../inc/AAnimal.hpp \
+  inc/Brain.hpp
