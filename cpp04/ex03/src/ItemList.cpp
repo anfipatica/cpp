@@ -20,6 +20,11 @@ ItemList &ItemList::operator=(const ItemList &item_list)
 ItemList::~ItemList(void)
 {
 	delete(this->_item);
+	if (this->_next == NULL)
+	{
+		_head = NULL;
+		_tail = NULL;
+	}
 }
 
 void	ItemList::insert_element(AMateria *item_dir)

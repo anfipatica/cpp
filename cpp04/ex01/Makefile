@@ -12,7 +12,7 @@ CXXFLAGS += -std=c++98
 RM = rm -rf
 
 SRCS = $(SRC_DIR)Animal.cpp $(SRC_DIR)Cat.cpp $(SRC_DIR)Dog.cpp $(SRC_DIR)main.cpp\
-		$(SRC_DIR)WrongAnimal.cpp $(SRC_DIR)WrongCat.cpp $(SRC_DIR)Brain.cpp
+		$(SRC_DIR)Brain.cpp
 
 OBJS = $(patsubst $(SRC_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 

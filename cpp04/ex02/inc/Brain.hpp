@@ -3,6 +3,8 @@
 
 # include <string>
 
+# define N_IDEAS 100
+
 class Brain
 {
 public:
@@ -15,8 +17,7 @@ public:
 	void	set_idea(const std::string idea, const unsigned int index);
 	void	print_ideas(void) const;
 private:
-	static const int _number_of_ideas = 100;
-	std::string	_ideas[_number_of_ideas];
+	std::string	_ideas[N_IDEAS];
 };
 
 #endif

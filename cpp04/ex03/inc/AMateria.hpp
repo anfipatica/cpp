@@ -2,8 +2,6 @@
 # define AMATERIA_HPP
 
 # include <string>
-// # include "ICharacter.hpp"
-//# include "ItemList.hpp"
 
 class	ICharacter;
 class	ItemList;

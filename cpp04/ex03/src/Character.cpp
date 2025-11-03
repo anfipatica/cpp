@@ -17,14 +17,23 @@ Character::Character(std::string name): _name(name)
 		_items[i] = NULL;
 }
 
-Character::Character(const Character &character)
+Character::Character(const Character &character): _name(character._name)
 {
-	(void)character;
+	*this = character;
 }
 
 Character	&Character::operator=(const Character &character)
 {
-	(void)character;
+	if (this != &character)
+	{
+		for (int i = 0; i < N_ITEMS; ++i)
+		{
+			if (character._items[i])
+				_items[i] = character._items[i]->clone();
+			else
+				_items[i] = NULL;
+		}
+	}
 	return (*this);
 }
 

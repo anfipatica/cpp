@@ -1,10 +1,10 @@
 #include "../inc/Dog.hpp"
 #include "../inc/Cat.hpp"
-#include "WrongCat.hpp"
 #include <iostream>
 
 void	check_deep_copy(void)
 {
+	std::cout << "\n\n:: CHECK_DEEP_COPY ::\n";
 	Cat	cat1;
 	cat1.learn("I'm a cat with no deep thoughts", 0);
 
@@ -71,8 +71,8 @@ void	subject_test(void)
 
 int main(void)
 {
+	subject_test();
 	check_deep_copy();
-	// subject_test();
-	//more_copy_test();
+	more_copy_test();
 	return (0);
 }

@@ -12,7 +12,7 @@ CXXFLAGS += -std=c++98
 RM = rm -rf
 
 SRCS = $(SRC_DIR)Cure.cpp $(SRC_DIR)Ice.cpp  $(SRC_DIR)AMateria.cpp\
-		$(SRC_DIR)ICharacter.cpp $(SRC_DIR)Character.cpp \
+		$(SRC_DIR)Character.cpp $(SRC_DIR)MateriaSource.cpp \
 		$(SRC_DIR)ItemList.cpp $(SRC_DIR)main.cpp
 
 OBJS = $(patsubst $(SRC_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))

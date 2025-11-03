@@ -14,6 +14,8 @@ int main(void)
 	AAnimal	*animal_dog = new Dog();
 	//AAnimal	*animal = new AAnimal();
 
+	cat.make_sound();
+	dog.make_sound();
 	animal_cat->make_sound();
 	animal_dog->make_sound();
 

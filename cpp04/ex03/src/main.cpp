@@ -1,6 +1,7 @@
 #include "Cure.hpp"
 #include "Ice.hpp"
 #include "Character.hpp"
+#include "MateriaSource.hpp"
 
 #include <iostream>
 
@@ -31,22 +32,55 @@ void	test_inventory(void)
 	paco->equip(cure5);
 	julia.equip(cure1);
 	delete(paco);
+	paco = NULL;
 }
 
 void	test_copy(void)
 {
 	Character	paco("paco");
+
+	paco.equip(new Ice());
+
+	Character	paco2(paco);
+
+	paco.use(0, paco2);
+	paco2.use(0, paco);
+
+	paco.unequip(0);
+
+	paco.use(0, paco2);
+	paco2.use(0, paco);
 }
 
-void	clone_test(void)
+void	subject(void)
 {
+	IMateriaSource	*src = new MateriaSource();
+	src->learn_materia(new Ice());
+	src->learn_materia(new Cure());
+
+	ICharacter	*me = new Character("me");
+
+	AMateria	*tmp;
+	tmp = src->create_materia("ice");
+	me->equip(tmp);
+	tmp = src->create_materia("cure");
+	me->equip(tmp);
+
+	ICharacter	*bob = new Character("bob");
+
+	me->use(0, *bob);
+	me->use(1, *bob);
+
+	delete (src);
+	delete (me);
+	delete (bob);
 
 }
 
 int main(void)
 {
-	//test_inventory();
-	//test_copy();
-	clone_test();
-	return 0;
+	test_inventory();
+	test_copy();
+	subject();
+	return (0);
 }

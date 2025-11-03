@@ -1,6 +1,6 @@
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongCat.hpp"
+#include "../inc/Dog.hpp"
+#include "../inc/Cat.hpp"
+#include "../inc/WrongCat.hpp"
 #include <iostream>
 
 int main(void)
@@ -11,6 +11,7 @@ int main(void)
 
 	WrongAnimal	*wrong_animal = new WrongAnimal();
 	WrongAnimal	*wrong_cat = new WrongCat();
+	WrongCat	*real_wrong_cat = new WrongCat();
 
 	std::cout << "\n:: animal\n";
 	std::cout << animal->get_type() << "\n";
@@ -32,11 +33,16 @@ int main(void)
 	std::cout << wrong_cat->get_type() << "\n";
 	wrong_cat->make_sound();
 
+	std::cout << "\n:: wrong_cat-wrong_cat\n";
+	std::cout << real_wrong_cat->get_type() << "\n";
+	real_wrong_cat->make_sound();
+
 	std::cout << "\n";
 	delete(animal);
 	delete(dog);
 	delete(cat);
 	delete(wrong_animal);
 	delete(wrong_cat);
+	delete(real_wrong_cat);
 	return (0);
 }
