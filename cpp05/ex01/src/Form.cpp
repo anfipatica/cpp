@@ -12,7 +12,7 @@ Form::Form(const std::string name, const int sign_grade, const int exec_grade):
 	std::cout << "Constructor called for form " << name << "\n";
 	if (_sign_grade > LOWEST_GRADE || _exec_grade > LOWEST_GRADE)
 		throw Form::GradeTooLowException();
-	else if (_sign_grade < HIGHEST_GRADE || _exec_grade < HIGHEST_GRADE)
+	if (_sign_grade < HIGHEST_GRADE || _exec_grade < HIGHEST_GRADE)
 		throw Form::GradeTooHighException();
 }
 
@@ -56,9 +56,19 @@ const int			&Form::get_exec_grade(void) const
 	return (_exec_grade);
 }
 
+void	Form::be_signed(const Bureaucrat &bureaucrat)
+{
+	if (bureaucrat.get_grade() > _sign_grade)
+		throw Form::GradeTooLowException();
+	if (_signed == true)
+		throw Form::AlreadySignedException();
+	_signed = true;
+}
+
 std::ostream	&operator<<(std::ostream &os, const Form &form)
 {
-	os << "Form " << form.get_name() << ":: signed( " << form.get_signed() << ")\n"
+	os << "Form " << form.get_name() << ":: signed(" << form.get_signed() << ")\n"
 		<< "-> Grade to be signed:   " << form.get_sign_grade() << "\n"
-		<< "-> Grade to be executed: " << form.get_exec_grade() << "\n";
+		<< "-> Grade to be executed: " << form.get_exec_grade();
+	return (os);
 }

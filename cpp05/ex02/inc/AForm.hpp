@@ -1,28 +1,32 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef A_FORM_HPP
+# define A_FORM_HPP
 
 # include <string>
 # include <iostream>
 # include <stdexcept>
 
+using std::cout;
+
 class	Bureaucrat;
 
-class	Form
+class	AForm
 {
 public:
-	Form(void);
-	Form(const Form &form);
-	Form	&operator=(const Form &form);
-	~Form(void);
+	AForm(void);
+	AForm(const AForm &form);
+	AForm	&operator=(const AForm &form);
+	virtual	~AForm(void);
 
-	Form(const std::string name, const int sign_grade, const int exec_grade);
+	AForm(const std::string name, const int sign_grade, const int exec_grade);
 
 	const std::string	&get_name(void) const;
 	const bool			&get_signed(void) const;
 	const int			&get_sign_grade(void) const;
 	const int			&get_exec_grade(void) const;
 
-	void	be_signed(const Bureaucrat &bureaucrat);
+	void			be_signed(const Bureaucrat &bureaucrat);
+	void			execute(const Bureaucrat &bureaucrat) const;
+	virtual void	execute(void) const = 0;
 
 	class	GradeTooHighException: public std::exception
 	{
@@ -47,6 +51,14 @@ public:
 			return ("Form already signed");
 		}
 	};
+	class FormNotSignedException: public std::exception
+	{
+	public:
+		const char *what() const throw() //override
+		{
+			return ("This form has not been signed");
+		}
+	};
 
 private:
 	const std::string	_name;
@@ -55,6 +67,6 @@ private:
 	const int			_exec_grade;
 };
 
-std::ostream	&operator<<(std::ostream &os, const Form &form);
+std::ostream	&operator<<(std::ostream &os, const AForm &form);
 
 #endif
