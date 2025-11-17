@@ -1,10 +1,5 @@
 #include "../inc/Intern.hpp"
 
-#include "../inc/ShrubberyCreationForm.hpp"
-#include "../inc/RobotomyRequestForm.hpp"
-#include "../inc/PresidentialPardonForm.hpp"
-
-
 Intern::Intern(void) {}
 
 Intern::Intern(const Intern &intern) {(void)intern;}
@@ -24,6 +19,7 @@ AForm	*Intern::make_form(const std::string &form_name, std::string target)
 	{
 		if (form_name == available_forms[i])
 		{
+			cout << "Intern creates " << form_name << "\n";
 			switch (i)
 			{
 				case 0:
@@ -35,6 +31,5 @@ AForm	*Intern::make_form(const std::string &form_name, std::string target)
 			}
 		}
 	}
-	//?Quizás molaría que saltara una excepción??? no estoy segura mi pana.
-	return (NULL);
+	throw (AForm::InvalidFormException());
 }

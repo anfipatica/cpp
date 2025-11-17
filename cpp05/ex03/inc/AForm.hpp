@@ -59,6 +59,14 @@ public:
 			return ("This form has not been signed");
 		}
 	};
+	class InvalidFormException: public std::exception
+	{
+	public:
+		const char *what() const throw() //override
+		{
+			return ("The form requested does not exist");
+		}
+	};
 
 private:
 	const std::string	_name;
