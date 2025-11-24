@@ -137,7 +137,7 @@ int	main(void)
 
 //? CONST_CAST
 
-int	main(void)
+/* int	main(void)
 {
 	const int	a = 42;
 	int			*b = (int *)&a;
@@ -146,4 +146,29 @@ int	main(void)
 	// que podamos justificar bien pq, pero esto ya lo sabiamos jejeje.
 	*b = 45;
 	*c = 67;
+} */
+
+//? CAST_OPERATORS
+
+class	Foo {
+public:
+	Foo(float const v): _v(v){};
+	float	getv(void) { return (_v);};
+
+	operator float() { return (_v);};
+	operator int() { return (static_cast<int>(_v));};
+private:
+	float	_v;
+};
+
+int	main(void)
+{
+	Foo		foo(5.2f);
+	float	f = foo;
+	int		n = foo;
+	Foo		t = 99;
+
+	std::cout << n << "\n";
+	std::cout << f << "\n";
+	std::cout << t.getv() << "\n";
 }
