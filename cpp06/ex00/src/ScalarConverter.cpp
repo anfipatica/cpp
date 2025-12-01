@@ -29,21 +29,12 @@ static void	print_char(int n, char c)
 
 static void	convert_char(char c)
 {
+	std::cout << ":: convert_char ::\n";
 	std::cout << std::fixed << std::setprecision(1);
 	std::cout << "char:   \'" << c << "\'\n";
 	std::cout << "int:    " << static_cast<int>(c) << "\n";
 	std::cout << "float:  " << static_cast<float>(c) << "f\n";
 	std::cout << "double: " << static_cast<double>(c) << "\n";
-}
-
-//! revisar
-static void	convert_naneinf(double naneinf)
-{
-	std::cout << std::fixed << std::setprecision(1);
-	std::cout << "char:   impossible\n";
-	std::cout << "int:    impossible\n";
-	std::cout << "float:  " << static_cast<float>(naneinf) << "f\n";
-	std::cout << "double: " << naneinf << "\n";
 }
 
 void	convert_int(std::string &value)
@@ -64,7 +55,11 @@ void	convert_double(std::string &value)
 	std::cout << ":: convert_double ::\n";
 	double	d = atof(value.c_str());
 
-	std::cout << std::fixed << std::setprecision(value.length() - value.find('.') - 1);
+	std::cout << std::fixed;
+	if (value.length() - value.find('.') == 1)
+		std::cout.precision(1);
+	else
+		std::cout.precision(value.length() - value.find('.') - 1);
 	print_char(d, static_cast<char>(d));
 	print_int(d, static_cast<char>(d));
 	std::cout << "float:  " << static_cast<float>(d) << "f\n";
@@ -74,14 +69,37 @@ void	convert_double(std::string &value)
 void	convert_float(std::string &value)
 {
 	std::cout << ":: convert_float ::\n";
+	std::cout << value << "\n";
 	double	d = atof(value.c_str());
 	float	f = atof(value.c_str());
 
-	std::cout << std::fixed << std::setprecision(value.length() - value.find('.') - 1);
+	std::cout << std::fixed;
+	if (value.length() - value.find('.') == 2)
+		std::cout.precision(1);
+	else
+		std::cout.precision(value.length() - value.find('.') - 2);
 	print_char(f, static_cast<char>(f));
 	print_int(d, static_cast<char>(f));
 	std::cout << "float:  " << f << "f\n";
 	std::cout << "double: " << static_cast<double>(f) << "\n";
+}
+
+static void	convert_naninf(double naninf)
+{
+	std::cout << ":: convert_double ::\n";
+	std::cout << "char:   impossible\n";
+	std::cout << "int:    impossible\n";
+	std::cout << "float:  " << static_cast<float>(naninf) << "f\n";
+	std::cout << "double: " << naninf << "\n";
+}
+
+static void convert_nanfinff(float nanfinff)
+{
+	std::cout << ":: convert_float ::\n";
+	std::cout << "char:   impossible\n";
+	std::cout << "int:    impossible\n";
+	std::cout << "float:  " << nanfinff << "f\n";
+	std::cout << "double: " << static_cast<double>(nanfinff) << "\n";
 }
 
 /*                           detection functions                              */
@@ -96,15 +114,20 @@ static bool	check_one_char(std::string value)
 	return (false);
 }
 
-//!revisar
 static bool	check_naneinf(std::string value)
 {
-	if (value == "nan" || value == "nanf")
-		return (convert_naneinf(std::numeric_limits<double>::quiet_NaN()), true);
-	else if (value == "inf" || value == "inff")
-		return (convert_naneinf(std::numeric_limits<double>::infinity()), true);
-	else if (value == "ninf" || value == "ninff")
-		return (convert_naneinf(-std::numeric_limits<double>::infinity()), true);
+	if (value == "nan")
+		return (convert_naninf(std::numeric_limits<double>::quiet_NaN()), true);
+	if (value == "nanf")
+		return (convert_nanfinff(std::numeric_limits<float>::quiet_NaN()), true);
+	if (value == "inf")
+		return (convert_naninf(std::numeric_limits<double>::infinity()), true);
+	if (value == "inff")
+		return (convert_nanfinff(std::numeric_limits<float>::infinity()), true);
+	if (value == "ninf")
+		return (convert_naninf(-std::numeric_limits<double>::infinity()), true);
+	if (value == "ninff")
+		return (convert_nanfinff(-std::numeric_limits<float>::infinity()), true);
 	return (false);
 }
 

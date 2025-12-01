@@ -1,7 +1,8 @@
 #include "../inc/ScalarConverter.hpp"
 #include <iostream>
 
-
+//! Revisar el tema del overflow al imprimir ints :'( no sé cómo
+//! gestionarlo y quiero llorar
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
