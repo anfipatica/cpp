@@ -113,27 +113,22 @@ int	main(void)
 } */
 
 //? REINTERPRET_CAST
-//! NO lo he terminado de entender muy bien este la verdad :(
 /*
 	Permite reinterpretar. Es el más abierto, podremos reinterpretar cualquier dirección como
 	cualquier otra.
  */
 
-/* int	main(void)
+int	main(void)
 {
 	float	a = 420.042f;
-	void	*b = &a;
-	int		*c = reinterpret_cast<int *>(b);
-	int		&d = reinterpret_cast<int &>(b);
-	int		*e = (int *)b;
-	int		&f = (int &)b;
+	//int		*b = static_cast<int *>(&a);
+	int		*c = reinterpret_cast<int *>(&a);
+	int		*e = (int *)&a;
 
 	std::cout << a << "\n";
 	std::cout << *c << "\n";
-	std::cout << d << "\n";
 	std::cout << *e << "\n";
-	std::cout << f << "\n";
-} */
+}
 
 //? CONST_CAST
 
@@ -149,7 +144,7 @@ int	main(void)
 } */
 
 //? CAST_OPERATORS
-
+/* 
 class	Foo {
 public:
 	Foo(float const v): _v(v){};
@@ -171,4 +166,26 @@ int	main(void)
 	std::cout << n << "\n";
 	std::cout << f << "\n";
 	std::cout << t.getv() << "\n";
-}
+} */
+
+class father {};
+class son: public father {
+	int a[1000];
+};
+
+
+// int	main(void)
+// {
+// 	const int a = 5;
+// 	int b = a;
+// 	int *c = (int*)&a;
+// 	int *d = const_cast<int*>(&a);
+// 	int *d = static_cast<int*>(&a);
+// 	int *e = &b;
+
+// 	double a = 5.065;
+// 	int b = a;
+// 	int *c = dynamic_cast<int*>(a);
+
+// 	return (0);
+// }

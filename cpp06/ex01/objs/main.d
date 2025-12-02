@@ -1,1 +1,1 @@
-objs/main.o: src/main.cpp inc/Serializer.hpp inc/Data.hpp
+objs/main.o: src/main.cpp src/../inc/Serializer.hpp src/../inc/Data.hpp
