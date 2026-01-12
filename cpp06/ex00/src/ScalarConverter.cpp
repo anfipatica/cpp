@@ -7,12 +7,16 @@
 
 /*                       Printers for numeric conversions                     */
 
-static void	print_int(double d, int n)
+static bool	print_int(double d, int n)
 {
 	if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max())
+	{
 		std::cout << "int:     OVERFLOW\n";
+		return false;
+	}
 	else
-		std::cout << "int:    " << n << "\n";
+		std::cout << "int:     " << n << "\n";
+	return true;
 }
 
 static void	print_char(int n, char c)
@@ -45,9 +49,16 @@ void	convert_int(std::string &value)
 	
 	std::cout << std::fixed << std::setprecision(1);
 	print_char(n, static_cast<char>(n));
-	print_int(d, n);
-	std::cout << "float:  " << static_cast<float>(n) << "f\n";
-	std::cout << "double: " << static_cast<double>(n) << "\n";
+	if (print_int(d, n) == false)
+	{
+		std::cout << "float:   impossible (int overflow)\n";
+		std::cout << "double:  impossible (int overflow)\n";
+	}
+	else
+	{
+		std::cout << "float:   " << static_cast<float>(n) << "f\n";
+		std::cout << "double:  " << static_cast<double>(n) << "\n";
+	}
 }
 
 void	convert_double(std::string &value)

@@ -1,4 +1,4 @@
-NAME = converter
+NAME = type
 
 INC_DIR = ./inc
 SRC_DIR = ./src/
@@ -6,12 +6,12 @@ OBJS_DIR = ./objs/
 
 CXX = c++
 CXXFLAGS =	-I$(INC_DIR) -Wextra -Wall -Werror
-CXXFLAGS += -fsanitize=address
+#CXXFLAGS += -fsanitize=address
 CXXFLAGS += -std=c++98
 
 RM = rm -rf
 
-SRCS = $(SRC_DIR)main.cpp $(SRC_DIR)ScalarConverter.cpp 
+SRCS = $(SRC_DIR)main.cpp 
 
 OBJS = $(patsubst $(SRC_DIR)%.cpp, $(OBJS_DIR)%.o, $(SRCS))
 

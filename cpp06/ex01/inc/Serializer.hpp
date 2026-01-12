@@ -4,12 +4,13 @@
 # include <stdint.h>
 # include "Data.hpp"
 
+typedef unsigned long uintptr_t;
 
 class Serializer
 {
 public:
-	static uintptr_t serialize(Data *ptr);
-	static Data *deserialize(uintptr_t raw);
+	static uintptr_t	serialize(Data *ptr);
+	static Data			*deserialize(uintptr_t raw);
 private:
 	Serializer(void);
 	Serializer(Serializer &serializer);
