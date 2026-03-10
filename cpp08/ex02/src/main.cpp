@@ -2,35 +2,28 @@
 
 int	main(void)
 {
-	std::deque<int> d;
-	d.push_front(1);
-	int	*n = new int;
+	MutantStack<int>	mstack;
+	std::deque<int>		dq;
 
-	*n = 1;
+	mstack.push(5);
+	mstack.push(17);
+	dq.push_back(5);
+	dq.push_back(17);
+	std::cout << mstack.top() << "\n";
+	std::cout << dq.at(dq.size() - 1) << "\n";
 
-	std::cout << n << "\n";
-	std::cout << *n << "\n";
-	std::cout << &(*n) << "\n\n";
+	mstack.pop();
+	dq.pop_back();
 
-	std::deque<int>::iterator it = d.begin();
-	std::cout << &it << "\n";
+	std::cout << mstack.size() << "\n";
+	std::cout << dq.size() << "\n";
+
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	mstack.push(0);
+	// std::deque<int>::iterator
+	MutantStack<int>::iterator it = mstack.begin();
 	std::cout << *it << "\n";
-	std::cout << &(*it) << "\n"; //!Qué pasa exactamente aquí preguntar al chatgpt o algo mañana que hoy estoy cansadita
 
-
-
-	// MutantStack<int> m;
-	// m.push(1);
-	// m.push(2);
-	// m.push(3);
-
-	// MutantStack<int>::iterator it = m.begin();
-	// std::cout << &(*it) << "\n";
-	// std::cout << *it << "\n";
-	// it = m.begin();
-	// std::cout << &(*it) << "\n";
-	// std::cout << *it << "\n";
-	// it = m.begin();
-	// std::cout << &(*it) << "\n";
-	// std::cout << *it << "\n";
 }

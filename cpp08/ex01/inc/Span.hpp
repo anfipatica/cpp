@@ -8,21 +8,6 @@
 typedef std::vector<int>::iterator iterator;
 typedef std::vector<int>::const_iterator const_iterator;
 
-class	InvalidSpanException: public std::exception
-{
-	const char *what(void) const throw()
-	{
-		return ("InvalidSpanException: There's not enough values to calculate spans.");
-	}
-} ;
-
-class	MaxLenException: public std::exception
-{
-	const char	*what(void)const throw()
-	{
-		return ("MaxLenException: Can't add new values, limit reached.");
-	}
-};
 
 class	Span
 {
@@ -39,6 +24,21 @@ public:
 	int		longestSpan(void);
 	void	printValues(void) const;
 
+	class	InvalidSpanException: public std::exception
+	{
+		const char *what(void) const throw()
+		{
+			return ("InvalidSpanException: There's not enough values to calculate spans.");
+		}
+	} ;
+
+	class	MaxLenException: public std::exception
+	{
+		const char	*what(void)const throw()
+		{
+			return ("MaxLenException: Can't add new values, limit reached.");
+		}
+	};
 private:
 	Span();
 	std::vector<int>	_vector;

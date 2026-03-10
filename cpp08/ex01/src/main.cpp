@@ -1,6 +1,7 @@
 #include "Span.hpp"
 #include <iostream>
-
+#include <cstdlib>
+#include <ctime>
 
 void	test_exceptions(void)
 {
@@ -29,29 +30,55 @@ void	test_exceptions(void)
 		std::cout << e.what() << "\n";
 	}
 }
+void	subject_test(void)
+{
+	std::cout << "\n :: Subject test\n";
+	Span sp = Span(5);
+
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+
+	std::cout << sp.shortestSpan() << "\n";
+	std::cout << sp.longestSpan() << "\n";
+}
+
+void	tons_of_random_numbers(void)
+{
+	std::cout << "\n :: Now testing with 1000 random numbers...\n";
+	std::vector<int>	v(1000);
+	Span				span(1000);
+	for (int i = 0; i < 1000; ++i)
+		v[i] = std::rand() % 100000;
+
+	span.addRange(v.begin(), v.end());
+	std::cout << span.shortestSpan() << "\n";
+	std::cout << span.longestSpan() << "\n";
+}
+
+// to generate more non repeated random numbers: https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php
+void	more_tests(void)
+{
+	std::cout << "\n :: And lastly, with no repeated numbers...\n";
+	int	arr[] = {27, 43, 46, 48, 66, 72, 78, 86, 96, 98, 115, 144, 156, 165, 172,
+		197, 202, 204, 207, 221, 244, 264, 273, 306, 315, 339, 357, 372, 388, 402,
+		421, 424, 444, 523, 561, 579, 644, 651, 657, 765, 768, 770, 825, 873, 891,
+		900, 909, 916, 983, 994};
+	std::vector<int>	v(arr, arr + sizeof(arr) / sizeof(int));
+	Span	span(100);
+	span.addRange(v.begin(), v.end());
+
+	std::cout << span.shortestSpan() << "\n";
+	std::cout << span.longestSpan() << "\n";
+}
+
 int	main(void)
 {
+	std::srand(time(0));
 	test_exceptions();
-	// Span s1(10002);
-	// std::vector<int> v = std::vector<int>();
-
-	// for (int i = 0; i != 10000; ++i)
-	// {
-	// 	v.push_back(i);
-	// }
-
-	// std::vector<int> v2 = std::vector<int>(v.begin(), v.end());
-	// try
-	// {
-	// 	s1.addRange(v.begin(), v.end());
-	// 	s1.addNumber(6);
-	// 	s1.addNumber(1);
-	// 	s1.printValues();
-	// 	std::cout << s1.longestSpan() << "\n";
-	// 	std::cout << s1.shortestSpan() << std::endl;
-	// }
-	// catch (std::exception &e)
-	// {
-	// 	std::cout << e.what() << "\n";
-	// }
+	subject_test();
+	tons_of_random_numbers();
+	more_tests();
 }

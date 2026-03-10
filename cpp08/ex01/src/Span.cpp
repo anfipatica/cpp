@@ -48,7 +48,7 @@ int	Span::shortestSpan(void)
 
 	if (_vector.size() <= 1)
 		throw InvalidSpanException();
-	
+
 	sort(_vector.begin(), _vector.end());
 	for (int i = _vector.size() - 1; i != 0; --i)
 	{
@@ -63,9 +63,9 @@ void	Span::printValues(void) const
 	std::cout << "\n------(" << _vector.size() << ")------\n";
 	for (const_iterator it = _vector.begin(); it != _vector.end(); ++it)
 	{
-		std::cout << *it << "\n";
+		std::cout << *it << " ";
 	}
-	std::cout << "----------------\n\n";
+	std::cout << "\n----------------\n\n";
 }
 
 void	Span::addRange(iterator begin, iterator end)
