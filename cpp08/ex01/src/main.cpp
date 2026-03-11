@@ -73,10 +73,28 @@ void	more_tests(void)
 	std::cout << span.shortestSpan() << "\n";
 	std::cout << span.longestSpan() << "\n";
 }
+void	test_constructors(void)
+{
+	std::cout << "\n :: Basic constructors and copy operator test\n";
+	Span span(5);
 
+	span.addNumber(1);
+	span.addNumber(2);
+	span.addNumber(3);
+	Span copy(span);
+	std::cout << span.longestSpan() << "\n";
+	std::cout << copy.longestSpan() << "\n";
+	copy.addNumber(10);
+	std::cout << span.longestSpan() << "\n";
+	std::cout << copy.longestSpan() << "\n";
+	span = copy;
+	std::cout << span.longestSpan() << "\n";
+	std::cout << copy.longestSpan() << "\n\n";
+}
 int	main(void)
 {
 	std::srand(time(0));
+	test_constructors();
 	test_exceptions();
 	subject_test();
 	tons_of_random_numbers();

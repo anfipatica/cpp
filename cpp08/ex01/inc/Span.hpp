@@ -2,16 +2,12 @@
 # define SPAN_HPP
 # include <vector>
 
-//!excepción por usar shortest o longest span con 0 o 1 números metidos.
-
-
-typedef std::vector<int>::iterator iterator;
-typedef std::vector<int>::const_iterator const_iterator;
-
-
 class	Span
 {
 public:
+	typedef std::vector<int>::iterator iterator;
+	typedef std::vector<int>::const_iterator const_iterator;
+
 	Span(unsigned int max_ints);
 	Span(const Span &span);
 	Span &operator=(const Span &Span);
