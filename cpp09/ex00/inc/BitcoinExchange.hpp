@@ -9,9 +9,12 @@ using std::string;
 
 class BitcoinExchange
 {
+private:
+	std::map<string, float>	_csv;
 public:
-	std::multimap<string, string>			csv;
-	std::list<std::pair<string, string>>	input;
+	void	savecsv(void);
+	void	calculateExchange(char *fileName);
+	float	getDateValue(std::string date);
 };
 
 #endif

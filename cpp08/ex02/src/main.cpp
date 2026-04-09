@@ -142,9 +142,9 @@ void	test_constructors(void)
 
 int	main(void)
 {
+	test_constructors();
 	test_mutant();
 	test_deque();
 	test_list();
 	test_vector();
-	test_constructors();
 }

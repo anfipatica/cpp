@@ -47,11 +47,11 @@ void	subject_test(void)
 
 void	tons_of_random_numbers(void)
 {
-	std::cout << "\n :: Now testing with 1000 random numbers...\n";
-	std::vector<int>	v(1000);
-	Span				span(1000);
-	for (int i = 0; i < 1000; ++i)
-		v[i] = std::rand() % 100000;
+	std::cout << "\n :: Now testing with 100000 random numbers...\n";
+	std::vector<int>	v(100000);
+	Span				span(100000);
+	for (int i = 0; i < 100000; ++i)
+		v[i] = std::rand() % 10000000;
 
 	span.addRange(v.begin(), v.end());
 	std::cout << span.shortestSpan() << "\n";
@@ -73,6 +73,7 @@ void	more_tests(void)
 	std::cout << span.shortestSpan() << "\n";
 	std::cout << span.longestSpan() << "\n";
 }
+
 void	test_constructors(void)
 {
 	std::cout << "\n :: Basic constructors and copy operator test\n";
@@ -91,6 +92,7 @@ void	test_constructors(void)
 	std::cout << span.longestSpan() << "\n";
 	std::cout << copy.longestSpan() << "\n\n";
 }
+
 int	main(void)
 {
 	std::srand(time(0));

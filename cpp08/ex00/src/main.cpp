@@ -5,7 +5,7 @@
 #include <iostream>
 
 #include "easyfind.hpp"
-
+#include <algorithm>
 
 int	main(void)
 {

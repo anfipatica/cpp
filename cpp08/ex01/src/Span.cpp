@@ -1,5 +1,4 @@
 #include "Span.hpp"
-
 #include <iostream>
 #include <algorithm>
 
@@ -52,6 +51,8 @@ int	Span::shortestSpan(void)
 	sort(_vector.begin(), _vector.end());
 	for (int i = _vector.size() - 1; i != 0; --i)
 	{
+		if (_vector.at(i) - _vector.at(i - 1) == 0)
+			return (0);
 		spans.push_back(_vector.at(i) - _vector.at(i - 1));
 	}
 	sort(spans.begin(), spans.end());

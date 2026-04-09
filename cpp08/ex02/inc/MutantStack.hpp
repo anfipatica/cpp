@@ -9,6 +9,7 @@ class MutantStack: public std::stack<T>
 {
 public:
 	typedef typename std::stack<T>::container_type::iterator iterator;
+
 	MutantStack(void): std::stack<T>() {}
 	MutantStack(const MutantStack &ms): std::stack<T>(ms)
 	{

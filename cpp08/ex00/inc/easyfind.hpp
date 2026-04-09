@@ -1,6 +1,8 @@
 #ifndef EASY_FIND_HPP
 # define EASY_FIND_HPP
 
+# include <exception>
+
 class	EasyfindException: public std::exception
 {
 public:
