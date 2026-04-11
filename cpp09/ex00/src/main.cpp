@@ -13,7 +13,6 @@ int	main(int argc, char **argv)
 	}
 
 	BitcoinExchange bc;
-
 	try
 	{
 		bc.savecsv();

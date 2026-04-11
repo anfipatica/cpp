@@ -11,6 +11,7 @@ class BitcoinExchange
 {
 private:
 	std::map<string, float>	_csv;
+
 public:
 	void	savecsv(void);
 	void	calculateExchange(char *fileName);
