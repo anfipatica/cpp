@@ -9,13 +9,18 @@ using std::string;
 
 class BitcoinExchange
 {
-private:
-	std::map<string, float>	_csv;
-
 public:
+	BitcoinExchange(void);
+	~BitcoinExchange(void);
+
 	void	savecsv(void);
 	void	calculateExchange(char *fileName);
 	float	getDateValue(std::string date);
+
+private:
+	BitcoinExchange(BitcoinExchange &bc);
+	BitcoinExchange &operator=(BitcoinExchange &bc);
+	std::map<string, float>	_csv;
 };
 
 #endif

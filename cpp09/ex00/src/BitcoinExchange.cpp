@@ -4,6 +4,9 @@
 #include <fstream>
 #include <cstdlib>
 
+BitcoinExchange::BitcoinExchange() {}
+BitcoinExchange::~BitcoinExchange() {}
+
 void	BitcoinExchange::savecsv()
 {
 	std::ifstream	file("data.csv");
