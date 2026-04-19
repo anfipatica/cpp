@@ -7,6 +7,7 @@ int PmergeMe<Container>::Jacobsthal(int k) {
     return round((pow(2, k + 1) + pow(-1, k)) / 3);
 }
 
+
 template <typename Container>
 void PmergeMe<Container>::insert(Container &main, Container &pend, ValueType odd, Container &left, Container &vec, bool is_odd, int order) {
     // Inserts elements from the 'pend' container into the 'main' container in sorted order.
@@ -35,6 +36,7 @@ void PmergeMe<Container>::insert(Container &main, Container &pend, ValueType odd
             decrease = 0;
             while (idx) {
                 // Determine the insertion point based on the Jacobsthal index and insert the element.
+                //! Vale aquí parece estar la chicha del asunto ojalá entenderlo pero ya mañana que es tarde y estoy cansada u.u
                 end = main.begin();
                 if (Jacobsthal(jc + count) - decrease <= main.size())
                     end = main.begin() + Jacobsthal(jc + count) - decrease;
