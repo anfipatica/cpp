@@ -2,23 +2,24 @@
 # define PMERGEME
 
 # include <iostream>
-# include <list>
 # include <vector>
+# include <deque>
 
 class PMergeMe
 {
 public:
-	void	fillContainer(char **argv);
-	void	sort(size_t pairSize);
-	void	printVector();
-	void	printVector(std::vector<int> &v); //!Esta es de parseooooo
+	void	fillContainer(char **argv, std::vector<int> &v);
+	void	fillContainer(char **argv, std::deque<int> &d);
+	void	sort(size_t pairSize, std::vector<int> &v);
+	void	sort(size_t pairSize, std::deque<int> &d);
+
 
 private:
-	std::vector<int>	_v;
-	int					_checks;
-	void	pendMain(size_t pairSize);
-	int		binarySearch(std::vector<int> &main, int n);
-	int		Jacobsthal(int k);
+	void	pendMain(size_t pairSize, std::vector<int> &v);
+	void	pendMain(size_t pairSize, std::deque<int> &d);
+	void	jacobsthalInsert(std::vector<int> &main, std::vector<int> &pend);
+	void	jacobsthalInsert(std::deque<int> &main, std::deque<int> &pend);
+	int		jacobsthal(int k);
 };
 
 #endif

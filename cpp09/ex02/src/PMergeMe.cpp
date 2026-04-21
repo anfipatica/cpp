@@ -3,73 +3,16 @@
 #include <algorithm>
 #include <cmath>
 
-
-int PMergeMe::Jacobsthal(int k)
+int PMergeMe::jacobsthal(int k)
 {
 	return round((pow(2, k + 1) + pow(-1, k)) / 3);
 }
 
-void	PMergeMe::printVector(std::vector<int> &v)
-{
-	for (std::vector<int>::iterator it = v.begin(); it != v.end(); ++it)
-	{
-		std::cout << *it;
-		if (it + 1 == v.end())
-			std::cout << "\n";
-		else
-			std::cout << " - ";
-	}
-}
-
-void	PMergeMe::printVector(void)
-{
-	for (std::vector<int>::iterator it = _v.begin(); it != _v.end(); ++it)
-	{
-		std::cout << *it;
-		if (it + 1 == _v.end())
-			std::cout << "\n";
-		else
-			std::cout << " - ";
-	}
-}
-
-static bool	isValidNumber(char *strnum)
-{
-	for (int i = 0; strnum[i]; ++i)
-	{
-		if (std::isdigit(strnum[i]) == false && strnum[i] != '+')
-			return (false);
-	}
-	return (true);
-}
-
-static void	swapPairs(std::vector<int>::reverse_iterator &rit, size_t pairSize)
+template <typename T>
+static void	swapPairs(T &rit, size_t pairSize)
 {
 	for (size_t	i = 0; i < pairSize; ++i)
-	{
 		std::swap(*(rit + i), *(rit + pairSize + i));
-	}
-}
-
-int		PMergeMe::binarySearch(std::vector<int> &main, int n)
-{
-	int	low = 0;
-
-	int	high = main.size() -1;
-	int	mid = high / 2;
-
-
-	while (high >= low)
-	{
-	//	std::cout << "     _low = " << low << ". mid = " << mid << ". high = " << high << "\n";
-		if (n < main.at(mid))
-			high = mid - 1;
-		else if (n > main.at(mid))
-			low = mid + 1;
-		mid = low + (high - low) / 2;
-		++_checks;
-	}
-	return (high); // devuelve la posición previa a la inserción
 }
 
 
@@ -86,25 +29,109 @@ static void	reconstructVector(std::vector<int> &main, std::vector<int> &v, int p
 	}
 	for (size_t i = new_vector.size(); i < v.size(); ++i)
 		new_vector.push_back(v.at(i));
-
 	v = new_vector;
 }
 
-
-void	PMergeMe::pendMain(size_t pairSize)
+static void	reconstructVector(std::deque<int> &main, std::deque<int> &d, int pairSize)
 {
-	std::cout << "pairSize: " << pairSize << "\n";
+	std::deque<int>			new_deque;
+	std::deque<int>::iterator	it;
 
+	for (size_t i = 0; i < main.size() ; ++i)
+	{
+		it = std::find(d.begin(), d.end(), main.at(i));
+		for (int j = pairSize - 1; j >= 0; --j)
+			new_deque.push_back(*(it - j));
+	}
+	for (size_t i = new_deque.size(); i < d.size(); ++i)
+		new_deque.push_back(d.at(i));
+	d = new_deque;
+}
+
+
+void	PMergeMe::jacobsthalInsert(std::vector<int> &main, std::vector<int> &pend)
+{
+	std::vector<int>::iterator	end;
+
+	if (pend.size() == 1)
+		end = std::upper_bound(main.begin(), main.end(), pend.at(0));
+	else
+	{
+		size_t	jc_index = 2;
+		size_t	count = 0;
+		size_t	pend_index;
+		size_t	decrease;
+		while (pend.empty() == false)
+		{
+			pend_index = jacobsthal(jc_index) - jacobsthal(jc_index - 1);
+			if (pend_index > pend.size())
+				pend_index = pend.size();
+			decrease = 0;
+			while (pend_index > 0)
+			{
+				if (jacobsthal(jc_index + count) - decrease < main.size())
+					end = main.begin() + jacobsthal(jc_index + count) - decrease;
+				else
+					end = main.end();
+				end = std::upper_bound(main.begin(), end, *(pend.begin() + pend_index - 1));
+				main.insert(end, *(pend.begin() + pend_index - 1));
+				pend.erase(pend.begin() + pend_index - 1);
+				--pend_index;
+				++decrease;
+				++count;
+			}
+			++jc_index;
+		}
+	}
+}
+
+void	PMergeMe::jacobsthalInsert(std::deque<int> &main, std::deque<int> &pend)
+{
+	std::deque<int>::iterator	end;
+
+	if (pend.size() == 1)
+		end = std::upper_bound(main.begin(), main.end(), pend.at(0));
+	else
+	{
+		size_t	jc_index = 2;
+		size_t	count = 0;
+		size_t	pend_index;
+		size_t	decrease;
+		while (pend.empty() == false)
+		{
+			pend_index = jacobsthal(jc_index) - jacobsthal(jc_index - 1);
+			if (pend_index > pend.size())
+				pend_index = pend.size();
+			decrease = 0;
+			while (pend_index > 0)
+			{
+				if (jacobsthal(jc_index + count) - decrease < main.size())
+					end = main.begin() + jacobsthal(jc_index + count) - decrease;
+				else
+					end = main.end();
+				end = std::upper_bound(main.begin(), end, *(pend.begin() + pend_index - 1));
+				main.insert(end, *(pend.begin() + pend_index - 1));
+				pend.erase(pend.begin() + pend_index - 1);
+				--pend_index;
+				++decrease;
+				++count;
+			}
+			++jc_index;
+		}
+	}
+}
+
+
+void	PMergeMe::pendMain(size_t pairSize, std::vector<int> &v)
+{
 	std::vector<int> main;
 	std::vector<int> pend;
 
-	main.push_back(*(_v.begin() + pairSize - 1));
-	main.push_back(*(_v.begin() + (pairSize * 2) - 1));
+	main.push_back(*(v.begin() + pairSize - 1));
+	main.push_back(*(v.begin() + (pairSize * 2) - 1));
 
-	std::vector<int>::iterator start = _v.begin() + (pairSize * 2) - 1;
-
-	int limit = _v.size() / pairSize - 2;
-
+	std::vector<int>::iterator start = v.begin() + (pairSize * 2) - 1;
+	int limit = v.size() / pairSize - 2;
 	for (int i = 1; i <= limit ; ++i)
 	{
 		if (i % 2 == 0)
@@ -112,52 +139,99 @@ void	PMergeMe::pendMain(size_t pairSize)
 		else
 			pend.push_back(*(start + (pairSize * i)));
 	}
-	
-	for (size_t i = 0; i < pend.size(); ++i)
-		main.insert(main.begin() + binarySearch(main, pend.at(i)) + 1, pend.at(i));
 
-	reconstructVector(main, _v, pairSize);
+	jacobsthalInsert(main, pend);
+	reconstructVector(main, v, pairSize);
+}
+
+void	PMergeMe::pendMain(size_t pairSize, std::deque<int> &d)
+{
+	std::deque<int> main;
+	std::deque<int> pend;
+
+	main.push_back(*(d.begin() + pairSize - 1));
+	main.push_back(*(d.begin() + (pairSize * 2) - 1));
+
+	std::deque<int>::iterator start = d.begin() + (pairSize * 2) - 1;
+	int limit = d.size() / pairSize - 2;
+	for (int i = 1; i <= limit ; ++i)
+	{
+		if (i % 2 == 0)
+			main.push_back(*(start + (pairSize * i)));
+		else
+			pend.push_back(*(start + (pairSize * i)));
+	}
+
+	jacobsthalInsert(main, pend);
+	reconstructVector(main, d, pairSize);
 }
 
 
-void	PMergeMe::sort(size_t pairSize)
+
+void	PMergeMe::sort(size_t pairSize, std::vector<int> &v)
 {
-	std::cout << "pairSize: " << pairSize << "\n";
-	printVector();
-
-	// pairStart is the iterator where pairings begin, lonely nodes are skipped.
-	std::vector<int>::reverse_iterator start = _v.rbegin() + (_v.size() % (pairSize * 2));
-
-	for (std::vector<int>::reverse_iterator rit = start; rit != _v.rend(); rit += (pairSize * 2))
+	std::vector<int>::reverse_iterator start = v.rbegin() + (v.size() % (pairSize * 2));
+	for (std::vector<int>::reverse_iterator rit = start; rit != v.rend(); rit += (pairSize * 2))
 	{
 		if (*rit < *(rit + pairSize))
 			swapPairs(rit, pairSize);
 	}
 
-	//*He puesto *4 en vez de *2, creo que ahora tiene más sentido pero no estoy segura
-	if (pairSize * 4 < _v.size())
+	if (pairSize * 4 < v.size())
 	{
-		sort(pairSize * 2);
-		pendMain(pairSize);
-		printVector();
+		sort(pairSize * 2, v);
+		pendMain(pairSize, v);
 	}
-	else
-	{
-		printVector();
-		std::cout << "---------------- DESHACEMOS RECURSIVIDAD -----------------\n";
-	}
-	if (pairSize == 1)
-		std::cout << "checks totales:    " << _checks << "\n";
 }
 
 
-void	PMergeMe::fillContainer(char **argv)
+void	PMergeMe::sort(size_t pairSize, std::deque<int> &d)
+{
+	std::deque<int>::reverse_iterator start = d.rbegin() + (d.size() % (pairSize * 2));
+	for (std::deque<int>::reverse_iterator rit = start; rit != d.rend(); rit += (pairSize * 2))
+	{
+		if (*rit < *(rit + pairSize))
+			swapPairs(rit, pairSize);
+	}
+
+	if (pairSize * 4 < d.size())
+	{
+		sort(pairSize * 2, d);
+		pendMain(pairSize, d);
+	}
+}
+
+
+/* -------------------------------------------------------------------------- */
+
+static bool	isValidNumber(char *strnum)
+{
+	for (int i = 0; strnum[i]; ++i)
+	{
+		if (std::isdigit(strnum[i]) == false && strnum[i] != '+')
+			return (false);
+	}
+	return (true);
+}
+
+void	PMergeMe::fillContainer(char **argv, std::vector<int> &v)
 {
 	for (int i = 0; argv[i]; ++i)
 	{
 		if (isValidNumber(argv[i]) == false)
 			throw std::runtime_error("Invalid number: "+std::string(argv[i]));
 		//falta comprobar duplicados pero me da pereza.
-		_v.push_back(std::atoi(argv[i]));
+		v.push_back(std::atoi(argv[i]));
+	}
+}
+
+void	PMergeMe::fillContainer(char **argv, std::deque<int> &d)
+{
+	for (int i = 0; argv[i]; ++i)
+	{
+		if (isValidNumber(argv[i]) == false)
+			throw std::runtime_error("Invalid number: "+std::string(argv[i]));
+		//falta comprobar duplicados pero me da pereza.
+		d.push_back(std::atoi(argv[i]));
 	}
 }
